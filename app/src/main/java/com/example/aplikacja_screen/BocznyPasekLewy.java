@@ -123,6 +123,10 @@ public class BocznyPasekLewy extends AppCompatActivity
         } else if (id == R.id.nav_wyloguj) {
             startActivity(new Intent(BocznyPasekLewy.this, MainActivity.class));
             //wylogowanie z konta
+        }else if(id==R.id.nav_wybor){
+            startActivity(new Intent(BocznyPasekLewy.this, Wybor.class));
+        }else if(id==R.id.nav_tlumaczenie){
+            startActivity(new Intent(BocznyPasekLewy.this, Tlumaczenie.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity=""
+    tools:context="com.example.aplikacja_screen.Tlumaczenie">
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp"
+        android:gravity="center"
+        android:hint="Słowo "
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/textView22"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button17"
+        android:layout_below="@+id/textView21"
+        android:layout_marginTop="53dp"
+        android:hint="Wprowadź przetłumaczone słowo"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView22"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="84dp"
+        android:background="#e6e1e1"
+        android:text="Sprawdź poprawność " />
+
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button17"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:background="#e6e1e1"
+        android:visibility="invisible"
+        android:text="Dalej" />
+
+    <Button
+        android:id="@+id/button38"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button20"
+        android:layout_alignBottom="@+id/button20"
+        android:layout_alignStart="@+id/button20"
+        android:background="#e6e1e1"
+        android:visibility="gone"
+        android:text="Pokaż odpowiedź" />
+</RelativeLayout>

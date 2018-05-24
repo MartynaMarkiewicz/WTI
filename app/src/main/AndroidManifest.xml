@@ -6,10 +6,9 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	
+
     <!-- pozwolenie na korzystanie z Internetu -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -21,7 +20,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name="com.example.aplikacja_screen.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +44,11 @@
             android:name="com.example.Database.AppProvider"
             android:authorities="com.example.Database.provider"
             android:exported="false" />
+
+        <activity android:name="com.example.aplikacja_screen.Tlumaczenie">
+        </activity>
+        <activity android:name="com.example.aplikacja_screen.Wybor">
+        </activity>
     </application>
 
 </manifest>
