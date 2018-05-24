@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Wyświetl"
+        android:title="Wyświetl fiszki"/>
+    <item
+        android:id="@+id/Dodaj"
+        android:title="Dodaj fiszki" />
+
+    <item
+        android:id="@+id/Edytuj"
+        android:title="Edytuj zestaw"/>
+
+    <item
+        android:id="@+id/Usuń"
+        android:title="Usuń fiszki"/>
+
+    <item
+        android:id="@+id/Usuń_zestaw"
+        android:title="Usuń zestaw"/>
+
+
+
+</menu>

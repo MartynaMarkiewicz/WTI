@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/animacja_draw">
+    </ImageView>
+    <!--<ImageView-->
+    <!--android:layout_width="350dp"-->
+    <!--android:layout_height="300dp"-->
+    <!--android:tint="#f9dbdb"-->
+    <!--android:padding="16dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:src="@drawable/animacja_draw"/>-->
+
+    <TextView
+        android:id="@+id/animacja_przod"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="dom"
+        android:textColor="#7a1f1f"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:gravity="center"/>
+</FrameLayout>
