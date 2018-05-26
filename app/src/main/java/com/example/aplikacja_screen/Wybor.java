@@ -26,8 +26,6 @@ public class Wybor extends AppCompatActivity {
     Button t1;
     Database db;
     Cursor cursor;
-    Cursor cursor1;
-    Cursor cursor2;
     int idKategorii;
     ArrayList<String> pl;
     ArrayList<String> en;
@@ -62,41 +60,15 @@ public class Wybor extends AppCompatActivity {
 
         pl = new ArrayList<String>();
         en = new ArrayList<String>();
-        randomowe_ustawienie_en = new ArrayList<Integer>();
 
-        r = new Random();
-
-        //pobranie id wybranego zadania
-        SharedPreferences p1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String wybranyTypZadania = p1.getString("NazwaTypuZadania","0");
-//        cursor1=db.getExerciceType(wybranyTypZadania);
-        while(cursor1.moveToNext())
-        {
-            String nazwa_baza=cursor1.getString(1);
-            if(wybranyTypZadania.equals(nazwa_baza))
-            {
-                id_typu_zadania=cursor1.getInt(0);
-            }
-        }
-
-        //pobranie id wybranej kategorii
-        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        idKategorii = p.getInt("idKategorii",0);
-
-//        cursor = db.getWords(idKategorii);
-        while(cursor.moveToNext())
-        {
+        cursor = db.getFlashcards();
+        while(cursor.moveToNext()){
             pl.add(cursor.getString(2));
             en.add(cursor.getString(3));
         }
+        randomowe_ustawienie_en = new ArrayList<Integer>();
 
-        //pobranie id zadania
-        SharedPreferences p2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//        cursor2=db.getExercise(idKategorii,id_typu_zadania);
-        while(cursor2.moveToNext())
-        {
-            id_zadania=cursor2.getInt(0);
-        }
+        r = new Random();
 
         ilosc_slow = pl.size();
         //ustawianie na początku

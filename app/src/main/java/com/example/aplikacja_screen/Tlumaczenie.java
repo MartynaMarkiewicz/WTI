@@ -40,8 +40,6 @@ public class Tlumaczenie extends AppCompatActivity {
     Boolean bledna=false;
     Handler h = new Handler();
     Cursor cursor;
-    Cursor cursor1;
-    Cursor cursor2;
     int id_typu_zadania;
     int idKategorii;
     int id_zadania;
@@ -59,37 +57,11 @@ public class Tlumaczenie extends AppCompatActivity {
         angielskie = new ArrayList<String>();
         db = new Database(getContentResolver());
 
-        //pobranie id aktualnej kategorii
-        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        idKategorii = p.getInt("idKategorii",0);
-
-        SharedPreferences p1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String wybranyTypZadania = p1.getString("NazwaTypuZadania","0");
-        //Toast.makeText(getApplicationContext(),"nazwa: "+wybranyTypZadania,Toast.LENGTH_SHORT).show();
-       // cursor1=db.getExerciceType(wybranyTypZadania);
-        while(cursor1.moveToNext())
-        {
-            String nazwa_baza=cursor1.getString(1);
-            if(wybranyTypZadania.equals(nazwa_baza))
-            {
-                id_typu_zadania=cursor1.getInt(0);
-            }
-        }
-        //cursor = db.getWords(idKategorii);
-        while(cursor.moveToNext())
-        {
+        cursor = db.getFlashcards();
+        while(cursor.moveToNext()){
             polskie.add(cursor.getString(2));
             angielskie.add(cursor.getString(3));
         }
-
-        //pobranie id zadania
-        SharedPreferences p2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-      //  cursor2=db.getExercise(idKategorii,id_typu_zadania);
-        while(cursor2.moveToNext())
-        {
-            id_zadania=cursor2.getInt(0);
-        }
-
 
         pl.setText(polskie.get(0));
         sprawdz_poprawnosc.setOnClickListener(new View.OnClickListener() {
