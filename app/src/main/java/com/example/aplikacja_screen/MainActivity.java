@@ -10,12 +10,15 @@ import android.widget.Toast;
 
 import com.example.Database.Database;
 import com.example.m.aplikacja_screen.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
     public static final String PATH = "/sdcard/Download/";
 
     CardView zaloguj;
     Database db;
+    AdView ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +32,13 @@ public class MainActivity extends AppCompatActivity {
         zaloguj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, BocznyPasekLewy.class);
-                //startActivity(new Intent(MainActivity.this, MojeZestawy.class));
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, BocznyPasekLewy.class));
+
             }
         });
+
+        ad = (AdView)findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        ad.loadAd(adRequest);
     }
 }

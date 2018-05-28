@@ -42,4 +42,16 @@
 
     </android.support.v7.widget.CardView>
 
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/cardView"
+        android:layout_below="@+id/cardView"
+        android:layout_marginTop="133dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+
 </RelativeLayout>
+    <!--android:adSize="BANNER"-->
