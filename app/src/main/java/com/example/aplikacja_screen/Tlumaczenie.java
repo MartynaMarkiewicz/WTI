@@ -58,6 +58,9 @@ public class Tlumaczenie extends AppCompatActivity {
         db = new Database(getContentResolver());
 
         cursor = db.getFlashcards();
+        if(cursor.getCount()==0){
+            Toast.makeText(getApplicationContext(),"Brak słówek",Toast.LENGTH_SHORT).show();
+        }
         while(cursor.moveToNext()){
             polskie.add(cursor.getString(2));
             angielskie.add(cursor.getString(3));
