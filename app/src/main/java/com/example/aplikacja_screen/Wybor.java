@@ -62,7 +62,7 @@ public class Wybor extends AppCompatActivity {
         en = new ArrayList<String>();
 
         cursor = db.getFlashcards();
-        if(cursor.getCount()==0){
+        if(cursor.getCount()<4){
             Toast.makeText(getApplicationContext(),"Brak słówek",Toast.LENGTH_SHORT).show();
         }
         while(cursor.moveToNext()){
