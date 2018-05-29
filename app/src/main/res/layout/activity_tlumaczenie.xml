@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="105dp"
         android:gravity="center"
-        android:hint="Słowo "
+        android:hint=" "
         android:textSize="20dp" />
 
     <EditText

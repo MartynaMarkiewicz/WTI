@@ -14,6 +14,9 @@ import android.widget.Button;
 import com.example.Database.Database;
 import com.example.Zestaw;
 import com.example.m.aplikacja_screen.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ public class MojeZestawy extends AppCompatActivity {
     private static final String TAG ="MojeZestawy";
     Button dodaj;
     Database db;
+    private InterstitialAd mInterstitialAd;
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -47,6 +51,19 @@ public class MojeZestawy extends AppCompatActivity {
             public void onClick(View view) {
                startActivity(new Intent(MojeZestawy.this, TworzenieZestawu.class));
             }
+        });
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
         });
     }
 

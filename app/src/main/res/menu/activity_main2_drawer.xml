@@ -10,19 +10,18 @@
             android:title="Moje zestawy" />
         <item
             android:id="@+id/nav_wybor"
-            android:icon="@drawable/ic_action_name_logout"
+            android:icon="@drawable/wybor"
             android:title="Zadanie - Wybór" />
         <item
             android:id="@+id/nav_tlumaczenie"
-            android:icon="@drawable/ic_action_name_logout"
+            android:icon="@drawable/book"
             android:title="Zadanie - Tłumaczenie" />
         <item
             android:id="@+id/nav_wyloguj"
             android:icon="@drawable/ic_action_name_logout"
-            android:title="Wyloguj" />
+            android:title="Zakmnij aplikację" />
 
     </group>
-
 
 
 </menu>

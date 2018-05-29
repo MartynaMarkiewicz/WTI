@@ -58,92 +58,92 @@ public class Tlumaczenie extends AppCompatActivity {
         db = new Database(getContentResolver());
 
         cursor = db.getFlashcards();
+
         if(cursor.getCount()==0){
             Toast.makeText(getApplicationContext(),"Brak słówek",Toast.LENGTH_SHORT).show();
-        }
-        while(cursor.moveToNext()){
-            polskie.add(cursor.getString(2));
-            angielskie.add(cursor.getString(3));
-        }
-
-        pl.setText(polskie.get(0));
-        sprawdz_poprawnosc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (en.getText().toString().equals(angielskie.get(i).toString())) {
-
-                    sprawdz.setVisibility(View.INVISIBLE);
-                    sprawdz_poprawnosc.setText("Poprawna odpowiedź");
-                    sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#38ea3e"));
-                    if(bledna==false)
-                    {
-                        poprawne_odp++;
-                    }
-                    sprawdz_poprawnosc.setClickable(false);
-                    dalej.setVisibility(View.VISIBLE);
-                } else {
-                    sprawdz_poprawnosc.setText("Niepoprawna odpowiedź");
-                    sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#d11f34"));
-                    if(bledna==false)
-                    {
-                        bledne_odp++;
-                        bledna=true;
-                    }
-                    sprawdz.setVisibility(View.VISIBLE);
-                    sprawdz_poprawnosc.setClickable(false);
-                    sprawdz.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            AlertDialog alertDialog = new AlertDialog.Builder(Tlumaczenie.this).create();
-                            alertDialog.setTitle("Poprawna odpowiedz");
-                            alertDialog.setMessage(polskie.get(i)+" - "+angielskie.get(i));
-                            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            alertDialog.show();
-                            sprawdz_poprawnosc.setText("Sprawdź poprawność");
-                            sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#e6e1e1"));
-                        }
-                    });
-
-                    h.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            sprawdz_poprawnosc.setText("Sprawdź poprawność");
-                            //sprawdz.setVisibility(View.VISIBLE);
-                            sprawdz_poprawnosc.setVisibility(View.VISIBLE);
-                            sprawdz_poprawnosc.setClickable(true);
-                            sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#e6e1e1"));
-                        }
-                    },3000);
-                }
+        }else {
+            while (cursor.moveToNext()) {
+                polskie.add(cursor.getString(2));
+                angielskie.add(cursor.getString(3));
             }
-        });
 
-        dalej.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(i==9)
-                {
-                    startActivity(new Intent(Tlumaczenie.this,BocznyPasekLewy.class));
+            pl.setText(polskie.get(0));
+            sprawdz_poprawnosc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (en.getText().toString().equals(angielskie.get(i).toString())) {
+
+                        sprawdz.setVisibility(View.INVISIBLE);
+                        sprawdz_poprawnosc.setText("Poprawna odpowiedź");
+                        sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#38ea3e"));
+                        if (bledna == false) {
+                            poprawne_odp++;
+                        }
+                        sprawdz_poprawnosc.setClickable(false);
+                        dalej.setVisibility(View.VISIBLE);
+                    } else {
+                        sprawdz_poprawnosc.setText("Niepoprawna odpowiedź");
+                        sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#d11f34"));
+                        if (bledna == false) {
+                            bledne_odp++;
+                            bledna = true;
+                        }
+                        sprawdz.setVisibility(View.VISIBLE);
+                        sprawdz_poprawnosc.setClickable(false);
+                        sprawdz.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                AlertDialog alertDialog = new AlertDialog.Builder(Tlumaczenie.this).create();
+                                alertDialog.setTitle("Poprawna odpowiedz");
+                                alertDialog.setMessage(polskie.get(i) + " - " + angielskie.get(i));
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                alertDialog.show();
+                                sprawdz_poprawnosc.setText("Sprawdź poprawność");
+                                sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#e6e1e1"));
+                            }
+                        });
+
+                        h.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                sprawdz_poprawnosc.setText("Sprawdź poprawność");
+                                //sprawdz.setVisibility(View.VISIBLE);
+                                sprawdz_poprawnosc.setVisibility(View.VISIBLE);
+                                sprawdz_poprawnosc.setClickable(true);
+                                sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#e6e1e1"));
+                            }
+                        }, 3000);
+                    }
                 }
-                en.setText("");
-                sprawdz_poprawnosc.setClickable(true);
-                sprawdz_poprawnosc.setText("Sprawdź poprawność");
-                sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#e6e1e1"));
-                i++;
-                bledna=false;
-                dalej.setVisibility(View.INVISIBLE);
-                if(i<=9){wczytaj_slowa(i);}
-                if(i==9)
-                {
-                    dalej.setText("Zakończ lekcje");
+            });
+
+            dalej.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (i == 4) {
+                        startActivity(new Intent(Tlumaczenie.this, BocznyPasekLewy.class));
+                    }
+                    en.setText("");
+                    sprawdz_poprawnosc.setClickable(true);
+                    sprawdz_poprawnosc.setText("Sprawdź poprawność");
+                    sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#e6e1e1"));
+                    i++;
+                    bledna = false;
+                    dalej.setVisibility(View.INVISIBLE);
+                    if (i <= 4) {
+                        wczytaj_slowa(i);
+                    }
+                    if (i == 4) {
+                        dalej.setText("Zakończ lekcje");
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     public void wczytaj_slowa(int index)

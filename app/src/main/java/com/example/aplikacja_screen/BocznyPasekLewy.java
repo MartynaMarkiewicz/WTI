@@ -20,9 +20,15 @@ import android.text.style.StyleSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.m.aplikacja_screen.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class BocznyPasekLewy extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +47,9 @@ public class BocznyPasekLewy extends AppCompatActivity
     private View mCardBackLayout;
     TextView animacja_przod, animacja_tyl;
     View view;
+    private InterstitialAd mInterstitialAd;
+    AdView ad;
+    Button moje_zestawy, wybor, tlumaczenie;
 
     //od wątków
     Handler handler = new Handler();
@@ -79,7 +88,61 @@ public class BocznyPasekLewy extends AppCompatActivity
         //         flipCard(view); //create view
         //     }
         // }, 2000);
+
+
+        //REKLAMA
+        ad = (AdView)findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        ad.loadAd(adRequest);
+
+
+        //REKLAMA next
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3337463159086570/2776499557");
+        mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
+
+        mInterstitialAd.setAdListener(new AdListener(){
+            public void onAdClosed(){
+                startActivity(new Intent(BocznyPasekLewy.this, Wybor.class));
+            }
+        });
+
+
+        wybor = (Button)findViewById(R.id.button3);
+        tlumaczenie = (Button)findViewById(R.id.button4);
+        moje_zestawy = (Button)findViewById(R.id.button5);
+
+        wybor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BocznyPasekLewy.this,Wybor.class));
+            }
+        });
+
+        tlumaczenie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BocznyPasekLewy.this,Tlumaczenie.class));
+            }
+        });
+
+        moje_zestawy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BocznyPasekLewy.this,MojeZestawy.class));
+            }
+        });
     }
+ public void startnextActivity(View view){
+        if(mInterstitialAd.isLoaded())
+        {
+            mInterstitialAd.show();
+        }
+        else
+        {
+            startActivity(new Intent(BocznyPasekLewy.this, Wybor.class));
+        }
+ }
 
     @Override
     public void onBackPressed() {
