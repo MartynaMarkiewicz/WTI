@@ -65,7 +65,6 @@ public class BocznyPasekLewy extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         headerView = navigationView.getHeaderView(0);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -90,22 +89,13 @@ public class BocznyPasekLewy extends AppCompatActivity
         // }, 2000);
 
 
-        //REKLAMA
+        //REKLAMA BANNER
         ad = (AdView)findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         ad.loadAd(adRequest);
 
 
-        //REKLAMA next
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3337463159086570/2776499557");
-        mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
 
-        mInterstitialAd.setAdListener(new AdListener(){
-            public void onAdClosed(){
-                startActivity(new Intent(BocznyPasekLewy.this, Wybor.class));
-            }
-        });
 
 
         wybor = (Button)findViewById(R.id.button3);
@@ -133,16 +123,8 @@ public class BocznyPasekLewy extends AppCompatActivity
             }
         });
     }
- public void startnextActivity(View view){
-        if(mInterstitialAd.isLoaded())
-        {
-            mInterstitialAd.show();
-        }
-        else
-        {
-            startActivity(new Intent(BocznyPasekLewy.this, Wybor.class));
-        }
- }
+
+
 
     @Override
     public void onBackPressed() {
@@ -150,7 +132,8 @@ public class BocznyPasekLewy extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            startActivity(new Intent(BocznyPasekLewy.this, MainActivity.class));
         }
     }
 
@@ -184,7 +167,8 @@ public class BocznyPasekLewy extends AppCompatActivity
             // Handle the camera action
             startActivity(new Intent(BocznyPasekLewy.this, MojeZestawy.class));       //dodano
         } else if (id == R.id.nav_wyloguj) {
-            startActivity(new Intent(BocznyPasekLewy.this, MainActivity.class));
+            this.finish();
+
             //wylogowanie z konta
         }else if(id==R.id.nav_wybor){
             startActivity(new Intent(BocznyPasekLewy.this, Wybor.class));

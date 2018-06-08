@@ -83,6 +83,6 @@ public class NaukaFiszki extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        startActivity(new Intent(NaukaFiszki.this, MojeZestawy.class));
+        startActivity(new Intent(NaukaFiszki.this, BocznyPasekLewy.class));
     }
 }

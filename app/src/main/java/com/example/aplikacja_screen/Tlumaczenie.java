@@ -19,6 +19,11 @@ import android.widget.Toast;
 
 import com.example.Database.Database;
 import com.example.m.aplikacja_screen.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.formats.NativeAdOptions;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,18 +40,46 @@ public class Tlumaczenie extends AppCompatActivity {
 
     Database db;
     int i=0;
-    int poprawne_odp=0;
-    int bledne_odp=0;
-    Boolean bledna=false;
+
     Handler h = new Handler();
     Cursor cursor;
-    int id_typu_zadania;
-    int idKategorii;
-    int id_zadania;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tlumaczenie);
+
+        //REKLAMY
+//        AdLoader adLoader = new AdLoader.Builder(getApplicationContext(), "ca-app-pub-3940256099942544/2247696110")
+//                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+//                    @Override
+//                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+//                        // Show the ad.
+//                    }
+//                })
+//                .withAdListener(new AdListener() {
+//                    @Override
+//                    public void onAdFailedToLoad(int errorCode) {
+//                        // Handle the failure by logging, altering the UI, and so on.
+//                    }
+//                })
+//                .withNativeAdOptions(new NativeAdOptions.Builder()
+//                        // Methods in the NativeAdOptions.Builder class can be
+//                        // used here to specify individual options settings.
+//                        .build())
+//                .build();
+//
+//        if (adLoader.isLoading()) {
+//            // The AdLoader is still loading ads.
+//            // Expect more adLoaded or onAdFailedToLoad callbacks.
+//        } else {
+//            // The AdLoader has finished loading ads.
+//        }
+//
+//        adLoader.loadAd(new AdRequest.Builder().build());
+        //REKLAMY
+
+
 
         sprawdz_poprawnosc = (Button) findViewById(R.id.button17);
         dalej = (Button) findViewById(R.id.button20);
@@ -76,18 +109,13 @@ public class Tlumaczenie extends AppCompatActivity {
                         sprawdz.setVisibility(View.INVISIBLE);
                         sprawdz_poprawnosc.setText("Poprawna odpowiedź");
                         sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#38ea3e"));
-                        if (bledna == false) {
-                            poprawne_odp++;
-                        }
+
                         sprawdz_poprawnosc.setClickable(false);
                         dalej.setVisibility(View.VISIBLE);
                     } else {
                         sprawdz_poprawnosc.setText("Niepoprawna odpowiedź");
                         sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#d11f34"));
-                        if (bledna == false) {
-                            bledne_odp++;
-                            bledna = true;
-                        }
+
                         sprawdz.setVisibility(View.VISIBLE);
                         sprawdz_poprawnosc.setClickable(false);
                         sprawdz.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +161,7 @@ public class Tlumaczenie extends AppCompatActivity {
                     sprawdz_poprawnosc.setText("Sprawdź poprawność");
                     sprawdz_poprawnosc.setBackgroundColor(Color.parseColor("#e6e1e1"));
                     i++;
-                    bledna = false;
+
                     dalej.setVisibility(View.INVISIBLE);
                     if (i <= 4) {
                         wczytaj_slowa(i);

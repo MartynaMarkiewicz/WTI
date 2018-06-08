@@ -65,7 +65,12 @@ public class TworzenieZestawu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Pozostawiono puste pole.",Toast.LENGTH_SHORT).show();
                 }
 
+
             }
         });
+
+    }
+    public void onBackPressed() {
+        startActivity(new Intent(TworzenieZestawu.this, MojeZestawy.class));
     }
 }

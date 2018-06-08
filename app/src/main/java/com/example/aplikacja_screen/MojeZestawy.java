@@ -53,18 +53,27 @@ public class MojeZestawy extends AppCompatActivity {
             }
         });
 
+        //REKLAMA next
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3337463159086570/2776499557");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
-        mInterstitialAd.setAdListener(new AdListener() {
+        mInterstitialAd.setAdListener(new AdListener(){
             @Override
             public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                super.onAdClosed();
+                finish();
             }
-
         });
+    }
+
+    public void showInt() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            finish();
+            startActivity(new Intent(MojeZestawy.this,BocznyPasekLewy.class));
+        }
     }
 
     public void loadRecyclerViewItem(){
@@ -93,6 +102,7 @@ public class MojeZestawy extends AppCompatActivity {
     }
 
     public void onBackPressed(){
-        startActivity(new Intent(MojeZestawy.this,BocznyPasekLewy.class));
+        showInt();
+
     }
 }
