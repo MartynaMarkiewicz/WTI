@@ -75,10 +75,10 @@ public class Wybor extends AppCompatActivity {
 
             ilosc_slow = pl.size();
 //            ustawianie na początku
-            random_pl = r.nextInt(ilosc_slow) + 1;
-            random_en1 = r.nextInt(ilosc_slow) + 1;
-            random_en2 = r.nextInt(ilosc_slow) + 1;
-            random_en3 = r.nextInt(ilosc_slow) + 1;
+            random_pl = r.nextInt(ilosc_slow);
+            random_en1 = r.nextInt(ilosc_slow);
+            random_en2 = r.nextInt(ilosc_slow);
+            random_en3 = r.nextInt(ilosc_slow);
             random_en4 = random_pl;
 
 
