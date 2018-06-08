@@ -40,8 +40,6 @@ public class Wybor extends AppCompatActivity {
     int index_en;
     ArrayList<Integer> randomowe_ustawienie_en;
     int ilosc_iteracji=0;
-    int id_typu_zadania;
-    int id_zadania;
     int poprawne_odp=0;
     int bledne_odp=0;
     @Override

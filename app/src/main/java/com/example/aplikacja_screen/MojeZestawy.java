@@ -55,7 +55,6 @@ public class MojeZestawy extends AppCompatActivity {
 
         //REKLAMA next
         mInterstitialAd = new InterstitialAd(this);
-        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.setAdUnitId("ca-app-pub-3337463159086570/2776499557");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener(){
@@ -103,6 +102,5 @@ public class MojeZestawy extends AppCompatActivity {
 
     public void onBackPressed(){
         showInt();
-
     }
 }

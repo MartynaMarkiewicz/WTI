@@ -22,8 +22,6 @@ public class UsuwanieFiszek extends AppCompatActivity {
     ArrayList<String>pl;
     ArrayList<String>en;
     String polskie, angielskie;
-//    int liczba; //indeks edytowanej fiszki
-    ArrayList<String> zaznaczone_el = new ArrayList<>();
     ListView lv1;
     Button usun_fiszke;
     Database db;

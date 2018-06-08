@@ -33,19 +33,9 @@ import com.google.android.gms.ads.InterstitialAd;
 public class BocznyPasekLewy extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView zalogowany_jako;
-    //nav_header_main_2 --żeby się dostać do textView -> zalogowany jako
-    //bo ten przycisk nie jest w zwykłym Activity
     NavigationView navigationView;
     View headerView;
 
-    //od animacji
-    private AnimatorSet mSetRightOut;
-    private AnimatorSet mSetLeftIn;
-    private boolean mIsBackVisible = false;
-    private View mCardFrontLayout;
-    private View mCardBackLayout;
-    TextView animacja_przod, animacja_tyl;
     View view;
     private InterstitialAd mInterstitialAd;
     AdView ad;
@@ -74,29 +64,10 @@ public class BocznyPasekLewy extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // animacja_przod = (TextView) findViewById(R.id.animacja_przod);
-        // animacja_tyl = (TextView) findViewById(R.id.animacja_tyl);
-        //
-        // od animacji
-        // findViews();
-        // loadAnimations();
-        // changeCameraDistance();
-        // handler.postDelayed(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         flipCard(view); //create view
-        //     }
-        // }, 2000);
-
-
         //REKLAMA BANNER
         ad = (AdView)findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         ad.loadAd(adRequest);
-
-
-
-
 
         wybor = (Button)findViewById(R.id.button3);
         tlumaczenie = (Button)findViewById(R.id.button4);
@@ -124,22 +95,18 @@ public class BocznyPasekLewy extends AppCompatActivity
         });
     }
 
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            //super.onBackPressed();
             startActivity(new Intent(BocznyPasekLewy.this, MainActivity.class));
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
@@ -180,38 +147,4 @@ public class BocznyPasekLewy extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    // private void changeCameraDistance() {
-    //     int distance = 8000;
-    //     float scale = getResources().getDisplayMetrics().density * distance;
-    //     mCardFrontLayout.setCameraDistance(scale);
-    //     mCardBackLayout.setCameraDistance(scale);
-    // }
-    //
-    // @SuppressLint("ResourceType")
-    // private void loadAnimations() {
-    //     mSetRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.anim.animacja);
-    //     mSetLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.anim.animacja2);
-    // }
-    //
-    // private void findViews() {
-    //     mCardBackLayout = findViewById(R.id.card_back);
-    //     mCardFrontLayout = findViewById(R.id.card_front);
-    // }
-    //
-    // public void flipCard(View view) {
-    //     if (!mIsBackVisible) {
-    //         mSetRightOut.setTarget(mCardFrontLayout);
-    //         mSetLeftIn.setTarget(mCardBackLayout);
-    //         mSetRightOut.start();
-    //         mSetLeftIn.start();
-    //         mIsBackVisible = true;
-    //     } else {
-    //         mSetRightOut.setTarget(mCardBackLayout);
-    //         mSetLeftIn.setTarget(mCardFrontLayout);
-    //         mSetRightOut.start();
-    //         mSetLeftIn.start();
-    //         mIsBackVisible = false;
-    //     }
-    // }
 }

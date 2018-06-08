@@ -23,7 +23,6 @@ public class EdytowanieZestawu extends AppCompatActivity {
     ArrayList<String>pl;
     ArrayList<String>en;
     String polskie, angielskie;
-    ArrayList<String> zaznaczone_el = new ArrayList<>();
     ListView lv;
     Button edytuj_fiszke;
     Database db;
@@ -70,7 +69,6 @@ public class EdytowanieZestawu extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                 s= (String) lv.getItemAtPosition(i); //tutaj dostajemy całą linijkę
                 polskie = pl.get(i);
                 angielskie = en.get(i);
 
