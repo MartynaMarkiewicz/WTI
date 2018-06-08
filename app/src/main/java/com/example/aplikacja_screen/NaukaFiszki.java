@@ -23,6 +23,7 @@ public class NaukaFiszki extends AppCompatActivity {
     Button fiszka;
     Boolean odwroc = false;
     ImageButton next;
+    ImageButton back;
     int i = 0;
     int kolor_i=0;
     ArrayList<String>kolory;
@@ -38,15 +39,12 @@ public class NaukaFiszki extends AppCompatActivity {
         en=new ArrayList<String>();
         fiszka = (Button) findViewById(R.id.button7);
         next = (ImageButton) findViewById(R.id.imageButton);
+        back = (ImageButton)findViewById(R.id.imageButton2);
         kolory = new ArrayList<String>();
-        kolory.add("#fcb8b8");
-        kolory.add("#ffe4b7");
-        kolory.add("#fdffc9");
-        kolory.add("#c9fff9");
-        kolory.add("#c1ffeb");
-        kolory.add("#cfffc9");
-        kolory.add("#d5c9ff");
-        kolory.add("#ffc9f5");
+
+        kolory.add("#f9f9b6");
+        kolory.add("#b5f99a");
+
 
         //pobranie ID aktualnego zestawu
         SharedPreferences p= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -69,11 +67,11 @@ public class NaukaFiszki extends AppCompatActivity {
             public void onClick(View view) {
                 if (odwroc == true) {
                     fiszka.setText(pl.get(i));
-                    fiszka.setBackgroundColor(Color.parseColor(kolory.get(kolor_i)));
+                    fiszka.setBackgroundColor(Color.parseColor(kolory.get(0)));
                     odwroc = false;
                 } else {
                     fiszka.setText(en.get(i));
-                    fiszka.setBackgroundColor(Color.parseColor(kolory.get(kolor_i)));
+                    fiszka.setBackgroundColor(Color.parseColor(kolory.get(1)));
                     odwroc = true;
                 }
             }
@@ -83,16 +81,29 @@ public class NaukaFiszki extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //kolejna fiszka
+                fiszka.setBackgroundColor(Color.parseColor(kolory.get(0)));
                 if (i == pl.size() - 1) {
                     i = -1;
                 }
                 fiszka.setText(pl.get(i + 1));
                 odwroc = false;
                 i++;
-                kolor_i++;
-                if(kolor_i==kolory.size()){
-                    kolor_i=0;
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fiszka.setBackgroundColor(Color.parseColor(kolory.get(0)));
+                i--;
+                if(i==-1)
+                {
+                    i=pl.size()-1;
                 }
+            fiszka.setText(pl.get(i));
+            odwroc=false;
+
+
             }
         });
     }
